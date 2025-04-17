@@ -1,0 +1,50 @@
+{% extends "analyzer/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="sub-header">📁 تحميل ملف CSV</h2>
+
+    {% if error %}
+    <div class="alert error">
+        ❌ خطأ: {{ error }}
+    </div>
+    {% endif %}
+
+    <div class="form-container">
+        <!-- ✅ Combined Form -->
+        <form method="post" enctype="multipart/form-data" class="upload-form">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <!-- Drag & Drop Area (Now on Button) -->
+                <div id="upload-area" class="upload-area">
+                    <label for="csv_file" class="custom-file-upload">📁 اختر ملف CSV</label>
+                    <input type="file" name="csv_file" id="csv_file" accept=".csv" required>
+                </div>
+            
+                <!-- File Name Display -->
+                <p id="file-name" class="file-name">لم يتم اختيار أي ملف</p>
+                <small>يجب أن يحتوي الملف على عمود باسم "text"</small>
+            </div>  
+
+            <!-- ✅ Spell Check Toggle (Inside Same Form) -->
+            <div class="form-group">
+                <input type="checkbox" id="spell_check_dict" name="spell_check_dict">
+                <label for="spell_check_dict">تصحيح الأخطاء الإملائية باستخدام القاموس المحلي</label>
+            </div>
+            
+            <div class="form-group">
+                <input type="checkbox" id="spell_check_languagetool" name="spell_check_languagetool">
+                <label for="spell_check_languagetool">تصحيح الأخطاء الإملائية باستخدام LanguageTool</label>
+            </div>
+            
+            <div class="form-group">
+                <input type="checkbox" id="spell_check_ar" name="spell_check_ar">
+                <label for="spell_check_ar">تصحيح الأخطاء الإملائية باستخدام Ar-Corrector</label>
+            </div>                        
+                                 
+            <button type="submit" class="btn-secondary">🧮 بدء التحليل</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

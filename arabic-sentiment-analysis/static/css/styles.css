@@ -1,0 +1,739 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --container-bg: #f5f5f5;
+    --primary-color: #2288e8;
+    --secondary-color: #219bff;
+    --highlight-color: #28a745; /* Green for highlights */
+    --border-color: #ddd;
+    --header-text-color: white;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    min-height: 100vh;
+    transition: background-color 0.1s, color 0.1s;
+}
+
+[data-theme="dark"] {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --container-bg: #2d2d2d;
+    --primary-color: #1563ac;
+    --secondary-color: #1976D2;
+    --highlight-color: #1f7a3c;
+    --border-color: #444;
+}
+
+/* Headers General */
+
+.header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 15px 40px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 15px;
+    width: 100%; /* Fills the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+/* 🔹 Make Headers Adapt to Dark Mode */
+[data-theme="dark"] .header {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* 🔹 Sub-Headers */
+.sub-header {
+    font-size: 20px;
+    color: var(--text-color);
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* 🔹 Add Responsive Design */
+@media (max-width: 800px) {
+    .header {
+        font-size: 20px;
+        padding: 12px 20px; /* Keeps padding balanced */
+    }
+}
+
+/* Buttons: General */
+.btn, .btn-primary, .btn-secondary, .btn-analyze, .theme-toggle {
+    padding: 10px 15px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    transition: all 0.1s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    justify-content: center;
+}
+
+/* Button Colors */
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+    border: 2px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+    border: 2px solid var(--secondary-color);
+    transition: all 0.3s ease;
+}
+
+.btn-highlight {
+    background-color: var(--highlight-color);
+    color: white;
+    border: 2px solid var(--highlight-color);
+    transition: all 0.3s ease;
+}
+
+/* Hover Effects: All buttons grow slightly */
+.btn:hover, 
+.btn-primary:hover, 
+.btn-secondary:hover, 
+.btn-analyze:hover, 
+.btn-highlight:hover, 
+.theme-toggle:hover {
+    transform: scale(1.05);
+    filter: brightness(90%);
+}
+
+[data-theme="dark"] .btn-primary {
+    background-color: var(--primary-color) !important; /* Force same color */
+    color: white !important;
+    border-color: var(--primary-color);
+}
+
+/* Navigation Buttons */
+.nav-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center; /* Center buttons */
+    align-items: center; /* Align properly */
+    flex-wrap: wrap; /* Ensure responsiveness */
+    margin-top: 20px;
+}
+
+/* Ensure Each Button Has Proper Width */
+.cta-buttons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 15px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    min-width: 200px; /* Ensure equal width */
+}
+
+/* Adjust for Smaller Screens */
+@media (max-width: 600px) {
+    .cta-buttons {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+/* Button Spacing */
+.btn {
+    width: 100%;
+    text-align: center;
+}
+
+/* Remove full-width restriction for .cta-buttons */
+.cta-buttons .btn {
+    width: auto; /* Allow buttons to shrink to fit content */
+    min-width: 180px; /* Ensure buttons are not too small */
+}
+
+/* Keep other buttons full width if necessary */
+.btn:not(.cta-buttons .btn) {
+    width: 100%;
+    text-align: center;
+}
+
+/* Error Alets */
+.alert {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 15px;
+    border: 2px solid var(--error-border);
+    background-color: #af1e1e;
+    color: white;
+    text-align: center;
+    transition: all 0.1s ease;
+    width: 100%;
+    max-width: 600px; /* Prevent it from being too wide */
+    margin: 20px auto; /* Center it */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Hover Effect (Like Buttons) */
+.alert:hover {
+    transform: scale(1.05);
+    filter: brightness(95%);
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .alert {
+    background-color: #3d1a1a;
+    border-color: #5e2a2a;
+    color: #ff5252;
+}
+
+
+/* Table */
+.tables-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+/* Styling for each table container */
+.table-box {
+    width: 45%; /* Each table takes half the width */
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: var(--container-bg);
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Enable scrolling for large tables */
+}
+
+.box-1 {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    background-color: var(--container-bg);
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto; /* Enable scrolling for large tables */
+}
+
+/* Styling for each table container */
+.box {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: var(--bg-color);
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+}
+
+/* Table Styling */
+.csv-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* Table Headers */
+.csv-table th {
+    background-color: var(--primary-color);
+    color: white !important; /* Force white text */
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+}
+
+/* Table Data */
+.csv-table td {
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    text-align: center;
+}
+
+/* Dark Mode */
+[data-theme="dark"] .csv-table th {
+    background-color: var(--primary-color);
+    color: white !important; /* Ensure text remains white */
+}
+
+[data-theme="dark"] .csv-table td {
+    border-color: #555;
+    background-color: #333;
+    color: white;
+}
+
+/* General Form Styles */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center all contents */
+    text-align: center;
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+/* Styled Input Fields */
+input[type="file"], 
+input[type="text"] {
+    width: 100%;
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+}
+
+/* Input Focus Effect */
+input[type="file"]:focus, 
+input[type="text"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(21, 99, 172, 0.5);
+}
+
+/* Upload & Twitter Form Container Styling */
+/* Upload & Twitter Form Styling */
+.upload-form, .twitter-form {
+    width: 45%;
+    padding: 20px; /* Increase padding for better spacing */
+    background-color: var(--container-bg);
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    overflow: hidden; /* Fix horizontal scroll issue */
+}
+
+/* Ensure Forms Don't Cause Overflow */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 0 auto;
+    max-width: 100%; /* Prevent forms from stretching too wide */
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Fix Input Alignment */
+.upload-form input[type="file"],
+.twitter-form input[type="text"] {
+    display: block;
+    margin: 0 auto; /* Center the input */
+    width: 100%; /* Ensure proper width */
+    max-width: 300px; /* Prevent overly wide inputs */
+    padding: 10px;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+}
+
+/* Input Focus Effect */
+.upload-form input[type="file"]:focus,
+.twitter-form input[type="text"]:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 5px rgba(21, 99, 172, 0.5);
+}
+
+/* Ensure Buttons Are Centered */
+.upload-form button,
+.twitter-form button {
+    display: block;
+    margin: 15px auto 0 auto;
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .upload-form,
+[data-theme="dark"] .twitter-form {
+    background-color: #2d2d2d;
+    color: var(--text-color);
+}
+
+
+/* File Input Styling */
+input[type="file"] {
+    cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .form-group {
+        flex-direction: column;
+    }
+}
+
+/* Hide Default File Input */
+input[type="file"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Custom File Upload Button */
+
+/* Upload Drop Area */
+.upload-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--primary-color);
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px; /* Matches button width */
+    height: 90px; /* Matches button height */
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box; /* Ensures padding doesn't change size */
+}
+
+/* Upload Button */
+.custom-file-upload {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    background-color: var(--primary-color);
+    color: white !important;
+    border-radius: 15px;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 300px; /* Matches drop area */
+    height: 50px; /* Matches drop area */
+    border: 2px solid var(--primary-color);
+    margin: 0 auto;
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Ensure Upload Button Expands Inside Drop Zone */
+.upload-area .custom-file-upload {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Alignment */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures everything is centered */
+    text-align: center;
+}
+
+/* Highlight Drop Area When Dragging */
+.upload-area.dragover {
+    background-color: rgba(21, 99, 172, 0.2);
+    border-color: var(--highlight-color);
+}
+
+/* File Name Display */
+.file-name {
+    margin-top: 10px;
+    font-size: 16px;
+    color: var(--text-color);
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Hover Effect */
+.upload-area:hover {
+    transform: scale(1.05);
+    filter: brightness(90%);
+}
+
+/* Responsive: Ensure Buttons Resize */
+@media (max-width: 600px) {
+    .upload-area,
+    .custom-file-upload {
+        width: 100%;
+    }
+}
+
+.download-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+canvas {
+    max-width: 100%;
+    max-height: 300px;
+    color: white;
+}
+
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Adds spacing between charts */
+    flex-wrap: wrap; /* Ensures responsiveness */
+}
+
+.small-chart {
+    flex: 1;
+    min-width: 300px; /* Adjust size */
+    max-width: 400px;
+    text-align: center;
+}
+
+.small-chart canvas {
+    width: 100% !important;
+    height: 300px !important; /* Reduce height */
+}
+
+
+[data-theme="dark"] .charts canvas {
+    background-color: #2d2d2d;
+}
+
+/* Container Layout */
+.content-wrapper {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Section */
+.table-section {
+    width: 48%;
+    background-color: var(--container-bg);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+/* Processed Table Section */
+.table-section {
+    flex: 1;
+    background-color: var(--container-bg);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+.table-container {
+    max-height: none; /* Prevent it from being too long */
+    overflow-y: auto;
+}
+
+[data-theme="dark"] .table-sectio {
+    background-color: #2d2d2d;
+}
+
+/* Responsive: Stack tables on smaller screens */
+@media (max-width: 900px) {
+    .tables-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .statistics-layout {
+        flex-direction: column; /* Stack on smaller screens */
+    }
+    
+    .table-box {
+        width: 90%;
+    }
+
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .table-section {
+        width: 100%;
+    }
+}
+
+.confidence-container {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 15px;
+    border-radius: 15px;
+    background: #f1f1f1;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.confidence-legend {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.legend-circle {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    color: white;
+    margin-right: 8px;
+}
+
+.legend-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.custom-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.low-score {
+    background-color: #f29f1c; /* Orange for Higher Confidence */
+}
+
+.high-score {
+    background-color: #397dd9; /* Blue for Lower Confidence */
+}
+
+.confidence-bar {
+    width: 100%;
+    height: 25px;
+    background: #ddd;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-start;
+    position: relative;
+}
+
+.low-confidence {
+    background-color: #f29f1c;
+    height: 100%;
+    transition: width 0.5s ease-in-out;
+}
+
+.high-confidence {
+    background-color: #397dd9;
+    height: 100%;
+    transition: width 0.5s ease-in-out;
+}
+
+#confidenceBarFill {
+    height: 100%;
+    display: flex;
+    width: 100%;
+}
+
+#confidenceBarChart {
+    pointer-events: auto !important;
+    position: relative !important;
+    z-index: 10 !important;
+}
+
+.sentiment-counter-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.sentiment-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 15px;
+    border-radius: 50%;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    min-width: 15px;
+    min-height: 15px;
+    max-width: 15px;
+    max-height: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.positive {
+    background-color: #5bd940;  /* Green */
+}
+
+.neutral {
+    background-color: #397dd9;  /* Blue */
+}
+
+.negative {
+    background-color: #f29f1c;  /* Orange */
+}
+
+.horizontal-container {
+    display: flex;  /* ✅ Enables horizontal layout */
+    justify-content: center;  /* ✅ Centers content */
+    align-items: center;  /* ✅ Aligns items in the center */
+    gap: 20px;  /* ✅ Adds spacing between boxes */
+    margin-top: 20px;
+    flex-wrap: wrap; /* ✅ Ensures responsiveness */
+}

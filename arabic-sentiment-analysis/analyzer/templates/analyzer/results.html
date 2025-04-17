@@ -1,0 +1,38 @@
+{% extends "analyzer/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="sub-header">📊 نتائج التحليل</h2>
+
+    <!-- Download Button -->
+    <div class="cta-buttons">
+        <a href="{% url 'download_csv' %}" class="btn-highlight">⬇️ تحميل النتائج</a>
+        <a href="{% url 'statistics' %}" class="btn-primary">📊 عرض الإحصائيات</a>
+    </div>    
+
+    <div class="tables-container">
+
+        <!-- Original File Table -->
+        <div class="table-box">
+            <h3>📂 الملف الأصلي</h3>
+            <table class="csv-table">
+                <tbody>
+                    {{ original_table|safe }}
+                </tbody>
+            </table>            
+        </div>
+
+        <!-- Processed File Table -->
+        <div class="table-box">
+            <h3>🧮 الملف المعالج</h3>
+            <table class="csv-table">
+                <tbody>
+                    {{ processed_table|safe }}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

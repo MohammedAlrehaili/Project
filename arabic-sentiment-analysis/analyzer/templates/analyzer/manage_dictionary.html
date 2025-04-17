@@ -1,0 +1,48 @@
+{% extends "analyzer/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="sub-header">إدارة القاموس المحلي</h2>
+    <div class="tables-container">
+
+
+    <!-- ✅ Form to Add a New Word -->
+    <div class="table-box">
+        <div class="box">
+            <h2>إضافة الكلمات في القاموس:</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-container">
+                    <label for="incorrect_word">الكلمة الخاطئة:</label>
+                    <input type="text" id="incorrect_word" name="incorrect_word" required placeholder="مثال: خيد, مشكل, ياب">
+                </div>
+                <div class="form-container">
+                    <label for="correct_word">الكلمة الصحيحة:</label>
+                    <input type="text" id="correct_word" name="correct_word" required placeholder="مثال: جيد, مشكلة , باب">
+                </div>
+                <button type="submit" name="action" value="add" class="btn-secondary">➕ إضافة</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ✅ List of Words with Remove Button -->
+    <div class="table-box">
+        <div class="box">
+            <h2>الكلمات الحالية في القاموس:</h2>
+            <ul>
+                {% for incorrect, correct in dictionary.items %}
+                <li>
+                    <strong>{{ incorrect }}</strong> ⬅️ {{ correct }}
+                    <form method="POST" style="display:inline;">
+                        {% csrf_token %}
+                        <input type="hidden" name="word_to_remove" value="{{ incorrect }}">
+                        <button type="submit" name="action" value="remove" class="btn-secondary">❌ إزالة</button>
+                    </form>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

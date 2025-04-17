@@ -1,0 +1,18 @@
+{% extends "analyzer/base.html" %}
+
+{% block content %}
+<div class="container">
+    <h2 class="sub-header"> 🐦 تحليل تويتر</h2>
+
+    <div class="form-container">
+        <form method="post" class="twitter-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="hashtag">🔍 أدخل الهاشتاج:</label>
+                <input type="text" id="hashtag" name="hashtag" required placeholder="#مثال">
+            </div>
+            <button type="submit" class="btn btn-highlight">📊 بدء التحليل</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
